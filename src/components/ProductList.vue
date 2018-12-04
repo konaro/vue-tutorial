@@ -7,7 +7,7 @@
       <div class="product-info">
         <div class="product-title">{{ item.name }}</div>
         <div class="product-content">{{ item.desc }}</div>
-        <span class="product-price">{{ item.price }}</span>
+        <span class="product-price">{{ item.price | currency }}</span>
       </div>
     </div>
   </div>
