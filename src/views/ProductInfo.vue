@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h2>Product Info</h2>
+    <button class="link" @click="onBackClick">
+      <i class="arrow-left"></i> Back</button>
     <div class="product-container">
       <div class="product-title">{{ product.name }}</div>
       <div class="product-image">
@@ -22,36 +23,59 @@
 </template>
 
 <script>
+import ProductService from '@/services/ProductService';
+
 export default {
   name: 'ProductInfo',
-  props: {
-    item: {
-      type: Object,
-      default() {
-        return {};
-      },
-    },
-  },
   data() {
     return {
-      product: this.item,
+      product: {},
       quantity: 0,
     };
   },
-  watch: {
-    item(value) {
-      this.product = value;
-    },
+  mounted() {
+    this.product = ProductService.get(this.$route.params.id);
   },
   computed: {
     amount() {
       return this.product.price * this.quantity;
     },
   },
+  methods: {
+    onBackClick() {
+      this.$router.go(-1);
+    },
+  },
 };
 </script>
 
 <style scoped>
+.link {
+  margin: 5px;
+  display: inline-block;
+  padding: 6px 12px;
+  font-size: 14px;
+  text-align: center;
+  text-decoration: underline;
+  border: none;
+  font-weight: 400;
+  color: #337ab7;
+  background-color: #fff;
+}
+
+.link:hover {
+  cursor: pointer;
+}
+
+.arrow-left {
+  border: solid;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 3px;
+  -webkit-transform: rotate(135deg);
+          transform: rotate(135deg);
+}
+
 .product-container {
   display: flex;
   flex-direction: row;

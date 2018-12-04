@@ -15,31 +15,21 @@
 </template>
 
 <script>
+import ProductService from '@/services/ProductService';
+
 export default {
   name: 'ProductList',
   data() {
     return {
-      products: [
-        {
-          id: 1,
-          name: 'Car',
-          imgUrl: 'https://images.pexels.com/photos/1200458/pexels-photo-1200458.jpeg?auto=compress&cs=tinysrgb&h=350',
-          desc: 'A luxury car you won\'t miss it.',
-          price: 199.99,
-        },
-        {
-          id: 2,
-          name: 'Bike',
-          imgUrl: 'https://images.pexels.com/photos/1239460/pexels-photo-1239460.jpeg?auto=compress&cs=tinysrgb&h=350',
-          desc: 'A durable bike you\'ve never ride.',
-          price: 25.00,
-        },
-      ],
+      products: [],
     };
+  },
+  mounted() {
+    this.products = ProductService.get();
   },
   methods: {
     onProductClick(product) {
-      this.$emit('product-click', product);
+      this.$router.push({ name: 'productInfo', params: { id: product.id } });
     },
   },
 };
