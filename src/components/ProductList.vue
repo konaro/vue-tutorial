@@ -1,13 +1,14 @@
 <template>
   <div>
-    <div class="product-container" v-for="item in products" :key="item.id">
+    <div class="product-container" v-for="product in products"
+      :key="product.id" @click="onProductClick(product)">
       <div class="product-image">
-        <img class="img-responsive" :src="item.imgUrl"/>
+        <img class="img-responsive" :src="product.imgUrl"/>
       </div>
       <div class="product-info">
-        <div class="product-title">{{ item.name }}</div>
-        <div class="product-content">{{ item.desc }}</div>
-        <span class="product-price">{{ item.price | currency }}</span>
+        <div class="product-title">{{ product.name }}</div>
+        <div class="product-content">{{ product.desc }}</div>
+        <span class="product-price">{{ product.price | currency }}</span>
       </div>
     </div>
   </div>
@@ -36,10 +37,15 @@ export default {
       ],
     };
   },
+  methods: {
+    onProductClick(product) {
+      this.$emit('product-click', product);
+    },
+  },
 };
 </script>
 
-<style>
+<style scoped>
 .product-container {
   display: flex;
   flex-direction: row;
@@ -52,12 +58,11 @@ export default {
 }
 
 .product-image {
-  display: flex;
+  align-self: center;
   width: 30%
 }
 
 .product-image img {
-  align-self: center;
   width: 100%;
   height: auto;
 }
@@ -65,7 +70,7 @@ export default {
 .product-info {
   display: flex;
   padding: 5px 8px;
-  flex-direction: raw;
+  flex-direction: row;
   flex-wrap: wrap;
   align-content: space-between;
   width: 70%;
