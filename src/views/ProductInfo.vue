@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import ProductService from '@/services/ProductService';
+import productService from '@/services/product-service';
 
 export default {
   name: 'ProductInfo',
@@ -33,8 +33,8 @@ export default {
       quantity: 0,
     };
   },
-  mounted() {
-    this.product = ProductService.get(this.$route.params.id);
+  created() {
+    this.product = productService.get(this.$route.params.id);
   },
   computed: {
     amount() {
@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     onBackClick() {
-      this.$router.go(-1);
+      this.$router.back();
     },
   },
 };

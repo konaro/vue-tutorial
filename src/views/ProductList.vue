@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import ProductService from '@/services/ProductService';
+import productService from '@/services/product-service';
 
 export default {
   name: 'ProductList',
@@ -24,8 +24,8 @@ export default {
       products: [],
     };
   },
-  mounted() {
-    this.products = ProductService.get();
+  created() {
+    this.products = productService.get();
   },
   methods: {
     onProductClick(product) {
