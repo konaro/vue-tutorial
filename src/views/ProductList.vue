@@ -24,13 +24,8 @@ export default {
       products: [],
     };
   },
-  subscriptions() {
-    return {
-      products$: productService.get(),
-    };
-  },
   created() {
-    this.$observables.products$.subscribe((res) => {
+    this.$subscribeTo(productService.get(), (res) => {
       this.products = res.response;
     });
   },

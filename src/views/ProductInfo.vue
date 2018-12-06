@@ -33,13 +33,8 @@ export default {
       quantity: 0,
     };
   },
-  subscriptions() {
-    return {
-      product$: productService.get(this.$route.params.id),
-    };
-  },
   created() {
-    this.$observables.product$.subscribe((res) => {
+    this.$subscribeTo(productService.get(this.$route.params.id), (res) => {
       this.product = res.response;
     });
   },
