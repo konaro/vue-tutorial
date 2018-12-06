@@ -10,12 +10,12 @@ export default new Router({
     {
       path: '/product',
       name: 'product',
-      component: () => import('./views/ProductList.vue'),
+      component: () => import('@/views/ProductList.vue'),
     },
     {
       path: '/product/:id',
       name: 'productInfo',
-      component: () => import('./views/ProductInfo.vue'),
+      component: () => import('@/views/ProductInfo.vue'),
     },
     { path: '*', redirect: '/product' },
   ],

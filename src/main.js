@@ -1,10 +1,10 @@
 import Vue from 'vue';
 import VueRx from 'vue-rx';
-import router from './router';
+import router from '@/router';
 
-import ProductApp from './ProductApp';
+import ProductApp from '@/ProductApp';
 
-import Currency from './filters/Currency';
+import Currency from '@/filters/Currency';
 
 Vue.config.productionTip = true;
 
