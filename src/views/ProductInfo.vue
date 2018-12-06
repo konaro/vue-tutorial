@@ -33,8 +33,15 @@ export default {
       quantity: 0,
     };
   },
+  subscriptions() {
+    return {
+      product$: productService.get(this.$route.params.id),
+    };
+  },
   created() {
-    this.product = productService.get(this.$route.params.id);
+    this.$observables.product$.subscribe((res) => {
+      this.product = res.response;
+    });
   },
   computed: {
     amount() {
